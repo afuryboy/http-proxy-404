@@ -58,6 +58,20 @@ proxy: {
   }
 ```
 
+step3: run serve.js
+
+```
+nodemon serve.js
+```
+
+or in your package.json
+
+```
+"scripts": {
+    "dev": "webpack-dev-server xxx & nodemon serve.js"
+  },
+```
+
 ## options
 
 - options.port: 代理服务的端口, 必填
