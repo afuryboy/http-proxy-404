@@ -1,11 +1,20 @@
 {
   "name": "http-proxy-404",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afuryboy/http-proxy-404.git"
+  },
+  "keywords": [
+    "http-proxy-middleware",
+    "http-proxy-404",
+    "404"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
