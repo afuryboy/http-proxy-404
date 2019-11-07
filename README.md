@@ -1,15 +1,27 @@
+<div align="center">
+  <h1>http-proxy-404</h1>
+  <p>just proxy serve,proxy 404 interface to target servers</p>
+</div>
 
-## 介绍
+<h2 align="center">Introduction</h2>
 
 http-proxy-404mock 是一个基于http-proxy-middleware 开发的node代理服务器
 
+<small>Http-proxy-404 is a node proxy server based on http-proxy-middleware</small>
+
 你可以用它做什么呢?
+
+<small>What can you do with it?</small>
 
 你可以配置一堆不同环境的接口服务地址
 
-它会自动嗅探接口在当前配置地址中是否404,如果404,它会往下一个地址中继续请求,直至成功
+<small>You can configure a bunch of interface service addresses for different environments.</small>
 
-## Install
+它会自动嗅探接口在当前配置的服务器地址中 请求的response的状态是否为404,如果请求的状态是404,它会往下一个地址中继续请求,直至成功
+
+<small>It will automatically sniff the interface to request the response status in the currently configured server address is 404,If the status of the request is 404, it will continue the request to the next address until it succeeds</small>
+
+<h2 align="center">Install</h2>
 
 
 
@@ -22,9 +34,9 @@ or
 $ yarn add http-proxy-404 -D
 ```
 
-## Usage
+<h2 align="center">Usage</h2>
 
-step1: 创建serve.js
+step1: create serve.js
 
 ```console
 const Proxy404 = require('http-proxy-404')
@@ -38,22 +50,21 @@ new Proxy404({
     'target host3'
   ],
   '404func': function(res) {
-    //在这里你可以重新定义404的范围
+    if(!res.response) {
+      return true
+    }
   }
 })
 ```
 
-step2: 配置webpack
+step2: Configuring webpack
 
 ```console
 proxy: {
     '/': {
-      target: 这里写上http-proxy-404 起的服务地址,
+      target: "http://x.x.x.x:port", // Please fill in the proxy service address output by http-proxy-404
       ws: false,
       changeOrigin: true,
-      // bypass: function(req,res,proxyOptions) {
-      //     console.log(req.headers);
-      // }
     }
   }
 ```
@@ -72,16 +83,15 @@ or in your package.json
   },
 ```
 
-## options
+<h2 align="center">options</h2>
 
-- options.port: 代理服务的端口, 必填
-  
-- options.log: 是否打印日志 默认值true
+|Name|Required|Type|Default|Description|
+|:--:|:--:|:--:|:-----:|:----------|
+|**`port`**|**`true`**|`{Number}`| null | Proxy service port|
+|**`log`**|**`false`**|`{Boolean}`|true|Whether to print the log|
+|**`apiReg`**|**`true`**|`{String|RegExp}`|null|Interface matching rule|
+|**`changeOrigin`**|**`false`**|`{Boolean}`|true| changes the origin of the host header to the target URL|
+|**`ws`**|**`false`**|`{Boolean}`|false|if you want to proxy websockets|
+|**`404func`**|**`false`**|`{Function}`|null|Custom function used to determine 404|
 
-- options.apiReg: 接口匹配规则
-  
-- options.changeOrigin:  将host header 改成目标 url, 默认值true
-  
-- options.ws: 如果你想代理websockets ,默认值false
 
-- options.404func: 你可以通过函数去自定 404的范围
