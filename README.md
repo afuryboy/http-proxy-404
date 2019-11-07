@@ -25,12 +25,12 @@ http-proxy-404mock 是一个基于http-proxy-middleware 开发的node代理服�
 
 
 
-```console
+```bash
 $ npm install http-proxy-404 --save-dev
 ```
 or
 
-```console
+```bash
 $ yarn add http-proxy-404 -D
 ```
 
@@ -38,7 +38,7 @@ $ yarn add http-proxy-404 -D
 
 step1: create serve.js
 
-```console
+```js
 const Proxy404 = require('http-proxy-404')
 
 new Proxy404({
@@ -59,7 +59,7 @@ new Proxy404({
 
 step2: Configuring webpack
 
-```console
+```js
 proxy: {
     '/': {
       target: "http://x.x.x.x:port", // Please fill in the proxy service address output by http-proxy-404
@@ -71,13 +71,13 @@ proxy: {
 
 step3: run serve.js
 
-```
+```bash
 nodemon serve.js
 ```
 
 or in your package.json
 
-```
+```json
 "scripts": {
     "dev": "webpack-dev-server xxx & nodemon serve.js"
   },
