@@ -93,5 +93,6 @@ or in your package.json
 |**`changeOrigin`**|**`false`**|`{Boolean}`|true| changes the origin of the host header to the target URL|
 |**`ws`**|**`false`**|`{Boolean}`|false|if you want to proxy websockets|
 |**`404func`**|**`false`**|`{Function}`|null|Custom function used to determine 404|
+|**`secure`**|**`false`**|`{Boolean}`|false|if you want to verify the SSL Certs|
 
 
