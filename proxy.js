@@ -13,6 +13,7 @@ class Proxy404 {
       target: options.targetList[0],
       changeOrigin: options.changeOrigin || true,
       ws: options.ws || false,
+      secure: options.secure || false,
       router: function(req) {
         var index = req.headers['proxy-index']
         var noServeFlag = false
