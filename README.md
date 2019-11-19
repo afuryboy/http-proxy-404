@@ -89,7 +89,7 @@ or in your package.json
 |:--:|:--:|:--:|:-----:|:----------|
 |**`port`**|**`true`**|`{Number}`| null | Proxy service port|
 |**`log`**|**`false`**|`{Boolean}`|true|Whether to print the log|
-|**`apiReg`**|**`true`**|`{String|RegExp}`|null|Interface matching rule|
+|**`apiReg`**|**`true`**|`{RegExp}`|null|Interface matching rule|
 |**`changeOrigin`**|**`false`**|`{Boolean}`|true| changes the origin of the host header to the target URL|
 |**`ws`**|**`false`**|`{Boolean}`|false|if you want to proxy websockets|
 |**`404func`**|**`false`**|`{Function}`|null|Custom function used to determine 404|
