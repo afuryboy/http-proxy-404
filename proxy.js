@@ -2,10 +2,19 @@ const express = require('express');
 const proxy = require('http-proxy-middleware');
 const axios = require('axios');
 const chalk = require('chalk');
+const https = require('https');
+const http = require('https');
 var ip = require('ip')
 var ipAdress = ip.address()
 var app = express();
-
+const httpAgent = new http.Agent({  
+  rejectUnauthorized: false,
+  keepAlive: true
+});
+const httpsAgent = new https.Agent({  
+  rejectUnauthorized: false,
+  keepAlive: true
+});
 class Proxy404 {
   constructor(options={}) {
     this.options = options
@@ -54,6 +63,8 @@ class Proxy404 {
         let result = await axios({
           url: this.options.targetList[i] + req.url,
           method: req.method,
+          httpAgent: httpAgent,
+          httpsAgent: httpsAgent
         })
         if (result !== 404) {
           req.headers['proxy-index'] = i;
