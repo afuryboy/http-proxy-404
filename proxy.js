@@ -7,6 +7,7 @@ const http = require('https');
 var ip = require('ip')
 var ipAdress = ip.address()
 var app = express();
+const regHttps = /^https/;
 const httpAgent = new http.Agent({  
   rejectUnauthorized: false,
   keepAlive: true
@@ -60,11 +61,12 @@ class Proxy404 {
       let mock
       var i = 0
       while(i<this.options.targetList.length) {
+        var isHttps = regHttps.test(this.options.targetList[i])
         let result = await axios({
           url: this.options.targetList[i] + req.url,
           method: req.method,
-          httpAgent: httpAgent,
-          httpsAgent: httpsAgent
+          httpAgent: isHttps ? httpAgent : null,
+          httpsAgent: isHttps ? httpsAgent : null
         })
         if (result !== 404) {
           req.headers['proxy-index'] = i;
