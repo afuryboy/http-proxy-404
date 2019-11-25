@@ -87,12 +87,18 @@ or in your package.json
 
 |Name|Required|Type|Default|Description|
 |:--:|:--:|:--:|:-----:|:----------|
-|**`port`**|**`true`**|`{Number}`| null | Proxy service port|
+|**`port`**|**`false`**|`{Number}`| 8081 | Proxy service port,If the port is occupied will port++ and until the port is available|
 |**`log`**|**`false`**|`{Boolean}`|true|Whether to print the log|
 |**`apiReg`**|**`true`**|`{RegExp}`|null|Interface matching rule|
 |**`changeOrigin`**|**`false`**|`{Boolean}`|true| changes the origin of the host header to the target URL|
 |**`ws`**|**`false`**|`{Boolean}`|false|if you want to proxy websockets|
-|**`404func`**|**`false`**|`{Function}`|null|Custom function used to determine 404|
+|**`404func`**|**`false`**|`{Function}`|null|Custom function used to determine 404;Return `true` means you want to proxy next;Return `false` instead|
+|**`200func`**|**`false`**|`{Function}`|null|Custom function used to determine 200;Return `true` means you want to proxy next;Return `false` instead;If you return a string, it will be defaulted to the address of the mandatory proxy|
 |**`secure`**|**`false`**|`{Boolean}`|false|if you want to verify the SSL Certs|
 
 
+<h2 align="center">update log</h2>
+
+2019-11-25:
+- 新增 参数配置 `200func`
+- 新增自动检测端口占用功能,并自动分配可用端口
